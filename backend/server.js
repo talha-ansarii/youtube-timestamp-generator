@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 // Load API key from environment variable (more secure)
-const apiKey = process.env.GEMINI_API_KEY;
+const apiKey = "AIzaSyDAyKyppuLVnd8mLyYpIudOe3STcVw2Qng"
 
 if (!apiKey) {
   throw new Error('Missing GEMINI_API_KEY environment variable');
