@@ -21,7 +21,7 @@ export default function App() {
     setTimestamps(''); // Clear previous timestamps on new submission
 
     try {
-      const response = await fetch('https://youtube-timestamp-generator-production.up.railway.app/', {
+      const response = await fetch('https://youtube-timestamp-generator-production.up.railway.app/api/generate-timestamps', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
