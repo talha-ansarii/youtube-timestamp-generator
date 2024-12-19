@@ -1,12 +1,19 @@
-{ 
-    "compilerOptions": {
-      "esModuleInterop": true,
-      "jsx": "react",
-      "baseUrl": ".",
-      "paths": {
-        "@/*": ["./*"]
-      },
-      "lib": ["ES2015"]
-    }
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["dom", "esnext"],
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "jsx": "react-jsx",
+    "allowImportingTsExtensions": true,
+    "noEmit": true  // This prevents emitting compiled JavaScript files
   }
-  
+}
