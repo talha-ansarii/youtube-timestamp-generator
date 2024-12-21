@@ -12,11 +12,11 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.post('/api/timestamps', generateTimestampsHandler);
-app.post('/api/summary', getSummary);
-app.post('/api/simpletext', getSimplefied);
-app.post('/api/quiz', getQuiz);
-app.post('/api/transcript', getTranscript);
+app.post('/timestamps', generateTimestampsHandler);
+app.post('/summary', getSummary);
+app.post('/simpletext', getSimplefied);
+app.post('/quiz', getQuiz);
+app.post('/transcript', getTranscript);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
