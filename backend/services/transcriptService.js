@@ -1,7 +1,9 @@
-const { YoutubeTranscript } = require('youtube-transcript');
+const { YoutubeTranscript } = require ('youtube-transcript');
 
-async function getVideoTranscript(videoUrl) {
+
+export async function getVideoTranscript(videoUrl) {
   try {
+    // console.log("in trans service" , videoUrl)
     const transcript = await YoutubeTranscript.fetchTranscript(videoUrl);
     if (!transcript) {
       throw new Error('No transcript available for this video');
@@ -9,12 +11,13 @@ async function getVideoTranscript(videoUrl) {
 
     return toString(transcript);
   } catch (error) {
-    throw new Error(`Failed to get transcript: ${error.message}`);
+    const errorMessage = error instanceof Error ? error.message : 'Failed to fetch transcript';
+    throw new Error(`Failed to get transcript: ${errorMessage}`);
   }
 }
 
 function toString(transcript) {
-  let result = "00:00 - Introduction\n"; // Starting point
+  let result = "00:00 - Introduction\n";
 
   transcript.forEach((entry) => {
     const timestamp = formatTimestamp(entry.offset);
@@ -25,15 +28,13 @@ function toString(transcript) {
 }
 
 function formatTimestamp(seconds) {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const remainingSeconds = Math.floor(seconds % 60);
-  
-    if (hours > 0) {
-      return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
-    } else {
-      return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
-    }
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = Math.floor(seconds % 60);
+
+  if (hours > 0) {
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+  } else {
+    return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
   }
-  
-module.exports = { getVideoTranscript };
+}

@@ -1,9 +1,9 @@
 import { getVideoTranscript } from '../services/transcriptService';
-import { generateTimestamps } from '../services/timestampService';
+import { generateQuiz } from '../services/quizService';
 
-export const generateTimestampsHandler = async (req, res) => {
+export const getQuiz = async (req, res) => {
   try {
-    // Parse body and extract videoUrl
+    // Parse JSON body and extract videoUrl
     const { videoUrl } = req.body;
 
     // Validate videoUrl
@@ -14,14 +14,14 @@ export const generateTimestampsHandler = async (req, res) => {
     // Fetch transcript
     const transcript = await getVideoTranscript(videoUrl);
 
-    // Generate timestamps
-    const timestamps = await generateTimestamps(transcript);
+    // Generate quiz
+    const quiz = await generateQuiz(transcript);
 
-    // Return timestamps
-    return res.status(200).json({ timestamps });
+    // Return quiz
+    return res.status(200).json({ quiz });
   } catch (error) {
     // Log error for debugging
-    console.error('Error generating timestamps:', error);
+    console.error('Error processing video quiz:', error);
 
     // Handle errors gracefully
     const errorMessage = error instanceof Error ? error.message : 'Internal server error';

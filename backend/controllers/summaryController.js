@@ -1,10 +1,10 @@
 import { getVideoTranscript } from '../services/transcriptService';
-import { generateTimestamps } from '../services/timestampService';
+import { generateSummary } from '../services/summaryService';
 
-export const generateTimestampsHandler = async (req, res) => {
+export const getSummary = async (req, res) => {
   try {
-    // Parse body and extract videoUrl
-    const { videoUrl } = req.body;
+    // Parse JSON body and extract videoUrl and style
+    const { videoUrl, style } = req.body;
 
     // Validate videoUrl
     if (!videoUrl) {
@@ -14,11 +14,11 @@ export const generateTimestampsHandler = async (req, res) => {
     // Fetch transcript
     const transcript = await getVideoTranscript(videoUrl);
 
-    // Generate timestamps
-    const timestamps = await generateTimestamps(transcript);
+    // Generate summary
+    const summary = await generateSummary(transcript, style);
 
-    // Return timestamps
-    return res.status(200).json({ timestamps });
+    // Return summary
+    return res.status(200).json({ summary });
   } catch (error) {
     // Log error for debugging
     console.error('Error generating timestamps:', error);

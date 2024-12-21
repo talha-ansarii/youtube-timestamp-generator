@@ -19,7 +19,8 @@ export default function App() {
     setTimestamps(''); 
 
     try {
-      const response = await fetch('https://youtube-timestamp-generator-production.up.railway.app/api/generate-timestamps', {
+      // const response = await fetch('https://youtube-timestamp-generator-production.up.railway.app/api/generate-timestamps', {
+      const response = await fetch('http://localhost:3000/api/generate-summary', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -33,7 +34,7 @@ export default function App() {
         throw new Error(data.error || 'Failed to generate timestamps');
       }
 
-      setTimestamps(data.timestamps);
+      setTimestamps(data.summary);
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred';
       setError(errorMessage);
