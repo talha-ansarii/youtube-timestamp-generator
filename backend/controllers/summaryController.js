@@ -1,7 +1,7 @@
-import { getVideoTranscript } from '../services/transcriptService';
-import { generateSummary } from '../services/summaryService';
+const { getVideoTranscript } = require('../services/transcriptService') ;
+const { generateSummary } =  require('../services/summaryService');
 
-export const getSummary = async (req, res) => {
+ const getSummary = async (req, res) => {
   try {
     // Parse JSON body and extract videoUrl and style
     const { videoUrl, style } = req.body;
@@ -28,3 +28,5 @@ export const getSummary = async (req, res) => {
     return res.status(500).json({ error: errorMessage });
   }
 };
+
+module.exports = { getSummary };

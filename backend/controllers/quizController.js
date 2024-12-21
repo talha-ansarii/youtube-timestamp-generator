@@ -1,7 +1,8 @@
-import { getVideoTranscript } from '../services/transcriptService';
-import { generateQuiz } from '../services/quizService';
 
-export const getQuiz = async (req, res) => {
+const { getVideoTranscript } = require('../services/transcriptService');
+const { generateQuiz } = require('../services/quizService');
+
+ const getQuiz = async (req, res) => {
   try {
     // Parse JSON body and extract videoUrl
     const { videoUrl } = req.body;
@@ -28,3 +29,5 @@ export const getQuiz = async (req, res) => {
     return res.status(500).json({ error: errorMessage });
   }
 };
+
+module.exports = { getQuiz };

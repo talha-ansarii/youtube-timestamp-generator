@@ -1,7 +1,8 @@
-import { getVideoTranscript } from '../services/transcriptService';
-import { generateTimestamps } from '../services/timestampService';
+const { getVideoTranscript } = require('../services/transcriptService');
+const {generateTimestamps } = require('../services/timestampService');
 
-export const generateTimestampsHandler = async (req, res) => {
+
+const generateTimestampsHandler = async (req, res) => {
   try {
     // Parse body and extract videoUrl
     const { videoUrl } = req.body;
@@ -28,3 +29,5 @@ export const generateTimestampsHandler = async (req, res) => {
     return res.status(500).json({ error: errorMessage });
   }
 };
+
+module.exports = {generateTimestampsHandler}

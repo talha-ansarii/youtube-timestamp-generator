@@ -1,11 +1,12 @@
-import { getVideoTranscript } from '../services/transcriptService';
-import { generateSimpliedText } from '../services/mindMapService';
 
-export const getSimplefied = async (req, res) => {
+const { getVideoTranscript } = require('../services/transcriptService');
+const { generateSimpliedText } = require('../services/mindMapService');
+
+const getSimplefied = async (req, res) => {
   try {
     // Parse JSON body and extract videoUrl
     const { videoUrl } = req.body;
-
+ 
     // Validate videoUrl
     if (!videoUrl) {
       return res.status(400).json({ error: 'Video URL is required' });
@@ -29,3 +30,5 @@ export const getSimplefied = async (req, res) => {
     return res.status(500).json({ error: errorMessage });
   }
 };
+
+module.exports = { getSimplefied };

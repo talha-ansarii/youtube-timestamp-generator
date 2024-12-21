@@ -1,7 +1,7 @@
 const { YoutubeTranscript } = require ('youtube-transcript');
 
 
-export async function getVideoTranscript(videoUrl) {
+ async function getVideoTranscript(videoUrl) {
   try {
     // console.log("in trans service" , videoUrl)
     const transcript = await YoutubeTranscript.fetchTranscript(videoUrl);
@@ -38,3 +38,5 @@ function formatTimestamp(seconds) {
     return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
   }
 }
+
+module.exports = { getVideoTranscript };

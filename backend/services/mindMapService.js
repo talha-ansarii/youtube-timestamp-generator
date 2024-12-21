@@ -1,6 +1,6 @@
-const {getGenerativeModel} = require('@/config/googleAIConfig') ;
+const {getGenerativeModel} = require('../config/googleAIConfig') ;
 
-export async function generateSimpliedText(transcript) {
+ async function generateSimpliedText(transcript) {
   try {
     const model = getGenerativeModel();
 
@@ -27,3 +27,5 @@ ${transcript}
     throw new Error(`Failed to generate timestamps: ${errorMessage}`);
   }
 }
+
+module.exports = { generateSimpliedText };

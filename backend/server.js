@@ -6,10 +6,9 @@ const { getSimplefied } = require('./controllers/simplifiedtextController');
 const { getQuiz } = require('./controllers/quizController');
 const { getTranscript } = require('./controllers/transcriptController');
 
-
 const app = express();
 
-app.use(cors());
+app.use(cors()); 
 app.use(express.json());
 
 // Routes

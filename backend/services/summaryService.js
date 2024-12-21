@@ -1,6 +1,5 @@
-const {getGenerativeModel} = require('@/config/googleAIConfig') ;
-
-export async function generateSummary(transcript, style  ) {
+const {getGenerativeModel} = require('../config/googleAIConfig') ;
+ async function generateSummary(transcript, style  ) {
   try {
     const model = getGenerativeModel();
 
@@ -101,3 +100,5 @@ export async function generateSummary(transcript, style  ) {
     throw new Error(`Failed to generate timestamps: ${errorMessage}`);
   }
 }
+
+module.exports = { generateSummary };

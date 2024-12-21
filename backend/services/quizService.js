@@ -1,6 +1,6 @@
-const {getGenerativeModel} = require('@/config/googleAIConfig') ;
+const {getGenerativeModel} = require('../config/googleAIConfig') ;
 
-export async function generateQuiz(transcript) {
+ async function generateQuiz(transcript) {
   try {
     const model = getGenerativeModel();
 
@@ -15,3 +15,5 @@ export async function generateQuiz(transcript) {
     throw new Error(`Failed to generate timestamps: ${errorMessage}`);
   }
 }
+
+module.exports = { generateQuiz };
