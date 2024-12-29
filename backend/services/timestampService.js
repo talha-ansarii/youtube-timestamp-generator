@@ -20,6 +20,7 @@ const {getGenerativeModel} = require('../config/googleAIConfig') ;
 
     const result = await model.generateContent(prompt);
     return result.response.text();
+    
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Failed to generate timestamps';
     throw new Error(`Failed to generate timestamps: ${errorMessage}`);
