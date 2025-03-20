@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build" : "npm install"
+  },
   "dependencies": {
     "@google-ai/generativelanguage": "^2.8.0",
     "@google/generative-ai": "^0.21.0",

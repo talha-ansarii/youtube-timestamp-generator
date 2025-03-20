@@ -18,7 +18,7 @@ export default function App() {
         setError('');
         setTimestamps(''); // Clear previous timestamps on new submission
         try {
-            const response = await fetch('https://youtube-timestamp-generator-production.up.railway.app/', {
+            const response = await fetch('https://yt-back-five.vercel.app/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
