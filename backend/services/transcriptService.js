@@ -1,20 +1,42 @@
 const { YoutubeTranscript } = require ('youtube-transcript');
+const { Innertube } = require('youtubei.js');
 
 
- async function getVideoTranscript(videoUrl) {
-  try {
-    // console.log("in trans service" , videoUrl)
-    const transcript = await YoutubeTranscript.fetchTranscript(videoUrl);
-    if (!transcript) {
-      throw new Error('No transcript available for this video');
+
+
+const getVideoTranscript = async (url) => {
+  const videoId = url.split('v=')[1];
+    const youtube = await Innertube.create({
+        lang: 'en',
+        location: 'US',
+        retrieve_player: false,
+    });
+    try {
+        const info = await youtube.getInfo(videoId);
+        const transcriptData = await info.getTranscript();
+        return transcriptData.transcript.content.body.initial_segments.map((segment) => segment.start_time_text + ' ' + segment.snippet.text).join('\n');
+    } catch (error) {
+        console.error('Error fetching transcript:', error);
+        throw error;
     }
+};
 
-    return toString(transcript);
-  } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : 'Failed to fetch transcript';
-    throw new Error(`Failed to get transcript: ${errorMessage}`);
-  }
-}
+
+
+//  async function getVideoTranscript(videoUrl) {
+//   try {
+//     // console.log("in trans service" , videoUrl)
+//     const transcript = await YoutubeTranscript.fetchTranscript(videoUrl);
+//     if (!transcript) {
+//       throw new Error('No transcript available for this video');
+//     }
+
+//     return toString(transcript);
+//   } catch (error) {
+//     const errorMessage = error instanceof Error ? error.message : 'Failed to fetch transcript';
+//     throw new Error(`Failed to get transcript: ${errorMessage}`);
+//   }
+// }
 
 function toString(transcript) {
   let result = "00:00 - Introduction\n";

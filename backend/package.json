@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build" : "npm install"
+    "build": "npm install"
   },
   "dependencies": {
     "@google-ai/generativelanguage": "^2.8.0",
@@ -10,6 +10,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "youtube-transcript": "^1.2.1",
+    "youtubei.js": "^13.2.0",
     "ytdl-core": "^4.11.5"
   }
 }
